@@ -53,29 +53,18 @@
 </template>
 
 <script>
+    const STORAGE_KEY = 'vue-todo-app-storage';
   export default {
-    name: 'Home',
+    name: 'Home'
     data() {
       return {
         newTaskTitle: "",
-        tasks: [
-          // { 
-          //   id: 1,
-          //   title: "Check your trades",
-          //   done: false,
-          // },
-          //   { 
-          //   id: 2,
-          //   title: "Check em ",
-          //   done: false,
-          // },
-          //   { 
-          //   id: 3,
-          //   title: "trades ",
-          //   done: false,
-          // }
-        ]
+        tasks: [],
+        newTask: ""
       }
+    },
+    created() {
+      this.newTask = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
     },
     methods: {
       addTask() {
@@ -86,6 +75,8 @@
         }
         this.tasks.push(newTask)
         this.newTaskTitle = ''
+        localStorage.setItem('value', this.value);
+        console.log(localStorage.getItem('value'))
       },
       doneTask(id) {
         let task = this.tasks.filter( task => task.id === id) [0]
@@ -96,4 +87,5 @@
       }
     }
   }
+  
 </script>
