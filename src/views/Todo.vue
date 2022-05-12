@@ -53,12 +53,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-
-
-export default {
-    name: 'Home',
-=======
   // new Vue({
     //   el:".todoapp",
   //   data() {
@@ -116,19 +110,19 @@ export default {
   //   }
   // }
   // })
-STORAGE_KEY = 'vue-todo-app-storage';
 export default {
   name: 'Home',
->>>>>>> 09f88e60a02c008608f3b69da0dd758bc0032d44
     data() {
       return {
+        STORAGE_KEY: 'vue-todo-app-storage',
         newTaskTitle: "",
         tasks: [],
         newTask: ""
       }
     },
     created() {
-      this.newTask = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
+      this.tasks = JSON.parse(localStorage.getItem(this.STORAGE_KEY) || '[]')
+      console.log(this.tasks)
     },
     methods: {
 
@@ -140,16 +134,16 @@ export default {
         }
         this.tasks.push(newTask)
         this.newTaskTitle = ''  
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(this.tasks));
+        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.tasks));
       },
       doneTask(id) {
         let task = this.tasks.filter( task => task.id === id) [0]
         task.done = !task.done
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(this.tasks));
+        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.tasks));
       },
       deleteTask(id) {
         this.tasks = this.tasks.filter(task => task.id !== id)
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(this.tasks));
+        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.tasks));
       }
     }
   }
