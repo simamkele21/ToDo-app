@@ -53,31 +53,82 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 
 
 export default {
     name: 'Home',
+=======
+  // new Vue({
+    //   el:".todoapp",
+  //   data() {
+    //     return {
+      //       tasks: [],
+  //       newTask: "",
+  //       editedTask: null,
+  //       editedTaskText: null,
+  //     }
+  //   },
+  //   created() {
+  //     this.tasks = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
+  //   },
+  //   methods: {
+  //     addTask() {
+  //       this.tasks.push({
+  //         id:3,
+  //         taskCompletionToggleButtonState: "",
+  //         taskCompletionState:"incomplete",
+  //         text: this.newTask
+  //       })
+  //       this.newTask = "";
+        
+  //       localStorage.setItem(STORAGE_KEY, JSON.stringify(this.tasks));
+  //   }
+  // },
+  // deleteTask(task) {
+  //   this.tasks.splice(this.indexof(task), 1);
+  //   localStorage.setItem(STORAGE_KEY, JSON.stringify(this.tasks));
+  // },
+  // editTask(task) {
+    //   this.editedTask = task;
+  //   this.editedTaskText = task.text;
+  // },
+  // updatedTask(task) {
+    //   if(!this.editedTask) {
+      //     return;
+  //   } else if( !task.text) {
+  //     this.deleteTask(task);
+  //   }
+
+  //   this.editedTodo  = null;
+  //   task.text = this.editedTaskText.trim();
+
+  //   localStorage.setItem(STORAGE_KEY, JSON.stringify(this.tasks));
+  // },
+  // toggleTaskCompletionState(task) {
+  //   if (task.taskCompletionStateToggleButtonState === "" ||  task.taskCompletionStateToggleButtonState === false) {
+    //     task.taskCompletionStateToggleButtonState == "checked";
+  //     task.taskCompletionState = "completed";
+  //   }else if (task.taskCompletionStateToggleButtonState = "checked" || 
+  //   task.taskCompletionStateToggleButtonState === true) {
+  //     task.taskCompletionStateToggleButtonState = "checked";
+  //     task.taskCompletionState = "incomplete";
+  //   }
+  // }
+  // })
+STORAGE_KEY = 'vue-todo-app-storage';
+export default {
+  name: 'Home',
+>>>>>>> 09f88e60a02c008608f3b69da0dd758bc0032d44
     data() {
       return {
         newTaskTitle: "",
-        tasks: [
-          // { 
-          //   id: 1,
-          //   title: "Check your trades",
-          //   done: false,
-          // },
-          //   { 
-          //   id: 2,
-          //   title: "Check em ",
-          //   done: false,
-          // },
-          //   { 
-          //   id: 3,
-          //   title: "trades ",
-          //   done: false,
-          // }
-        ]
+        tasks: [],
+        newTask: ""
       }
+    },
+    created() {
+      this.newTask = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
     },
     methods: {
 
@@ -88,15 +139,19 @@ export default {
           done: false
         }
         this.tasks.push(newTask)
-        this.newTaskTitle = ''
+        this.newTaskTitle = ''  
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(this.tasks));
       },
       doneTask(id) {
         let task = this.tasks.filter( task => task.id === id) [0]
         task.done = !task.done
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(this.tasks));
       },
       deleteTask(id) {
         this.tasks = this.tasks.filter(task => task.id !== id)
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(this.tasks));
       }
     }
   }
+  
 </script>
