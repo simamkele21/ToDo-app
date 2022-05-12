@@ -53,7 +53,9 @@
 </template>
 
 <script>
-  export default {
+
+
+export default {
     name: 'Home',
     data() {
       return {
@@ -78,6 +80,7 @@
       }
     },
     methods: {
+
       addTask() {
         let newTask = {
           id: Date.now(),

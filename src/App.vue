@@ -25,6 +25,7 @@
           :key="item.title"
           :to="item.to"
           link
+          src="mountains.jpg"
         >
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
@@ -88,3 +89,7 @@
     }),
   }
 </script>
+
+<style scoped>
+
+</style>
