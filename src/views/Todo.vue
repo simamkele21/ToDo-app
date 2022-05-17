@@ -6,11 +6,37 @@
             @keyup.enter="addTask"
             class="pa-3"
             outlined
-            label="Add task"
+            label="What you working on?"
             append-icon="mdi-plus"
             hide-details
             clearable
           ></v-text-field>
+                <v-divider class="mt-3"></v-divider>
+  
+      <v-layout
+        my-1
+        align-center
+      >
+        <strong class="mx-3 info--text text--darken-3">
+          Remaining: {{ remainingTasks }}
+        </strong>
+  
+        <v-divider vertical></v-divider>
+  
+        <strong class="mx-3 black--text">
+          Completed: {{ completedTasks }}
+        </strong>
+  
+        <v-spacer></v-spacer>
+  
+        <v-progress-circular
+          :value="progress"
+          class="mr-2"
+        ></v-progress-circular>
+      </v-layout>
+
+            <v-divider class="mb-3"></v-divider>
+
     <v-list
     class="pt-0"
       flat
@@ -124,6 +150,17 @@ export default {
       this.tasks = JSON.parse(localStorage.getItem(this.STORAGE_KEY) || '[]')
       console.log(this.tasks)
     },
+    computed: {
+    completedTasks() {
+      return this.tasks.filter(task => task.done).length;
+    },
+    progress() {
+      return this.completedTasks / this.tasks.length * 100;
+    },
+    remainingTasks() {
+      return this.tasks.length - this.completedTasks;
+    } },
+    
     methods: {
 
       addTask() {
@@ -149,3 +186,8 @@ export default {
   }
   
 </script>
+<style scoped>
+.v-list{
+background-color: rgb(194, 193, 193);
+}
+</style>

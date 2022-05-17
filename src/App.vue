@@ -91,5 +91,7 @@
 </script>
 
 <style scoped>
-
+#inspire{
+  background-color: rgb(194, 193, 193);
+}
 </style>
